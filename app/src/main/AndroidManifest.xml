@@ -16,6 +16,7 @@
         <activity
             android:name=".DetailActivity"
             android:exported="false" />
+        <activity android:name=".seemore.popularSeeMoreActivity"/>
         <activity
             android:name=".SortAndFilterActivity"
             android:exported="true"></activity>

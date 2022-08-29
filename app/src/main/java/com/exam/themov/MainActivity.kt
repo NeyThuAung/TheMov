@@ -2,6 +2,7 @@
 package com.exam.themov
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -25,6 +26,7 @@ import com.exam.themov.models.Anime.AnimeData
 import com.exam.themov.models.Anime.AnimeResult
 import com.exam.themov.models.Result
 import com.exam.themov.repository.PopularRepository
+import com.exam.themov.seemore.popularSeeMoreActivity
 import com.exam.themov.viewmodels.MainViewModel
 import com.exam.themov.viewmodels.ViewModelFactory
 import kotlinx.coroutines.CoroutineScope

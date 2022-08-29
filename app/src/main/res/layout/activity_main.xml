@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/blue_theme"
     tools:context=".MainActivity">
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/tbSearch"
@@ -14,8 +15,8 @@
             android:id="@+id/searchView"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:backgroundTint="#C6DFBB"
             android:layout_marginRight="60dp"
+            android:backgroundTint="@color/text_shadow_white"
             android:background="@drawable/search_background"
             />
         <ImageView
@@ -35,9 +36,9 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent">
             <com.denzcoskun.imageslider.ImageSlider
+                android:id="@+id/imageSlider"
                 android:layout_width="match_parent"
                 android:layout_height="270dp"
-                android:id="@+id/imageSlider"
                 app:iss_auto_cycle="true"
                 app:iss_delay="0"
                 app:iss_placeholder="@android:color/darker_gray"
@@ -56,101 +57,56 @@
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text="Popular"
-                android:textColor="@color/black"
+                android:text="Anime Movies"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent" />
+
+            <TextView
+                android:id="@+id/tvSeemore"
+                android:text="See More"
+                android:textColor="@color/white"
+                app:layout_constraintRight_toRightOf="parent"
+                android:layout_marginRight="10dp"
+                app:layout_constraintBottom_toBottomOf="@id/tvPopular"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"/>
 
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/recPopular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
+                android:layout_marginHorizontal="5dp"
+                android:layout_marginTop="10dp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintTop_toBottomOf="@id/tvPopular"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
-                tools:listitem="@layout/anime_item" />
+                tools:listitem="@layout/popular_movies" />
             <TextView
-                android:id="@+id/tvTopRated"
+                android:id="@+id/tvSample"
                 app:layout_constraintTop_toBottomOf="@id/recPopular"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="15dp"
                 android:fontFamily="sans-serif-light"
-                android:text="Top-rated"
-                android:textColor="@color/black"
+                android:text="Anime Movies"
+                android:textColor="@color/white"
                 android:textSize="25sp"
                 app:layout_constraintStart_toStartOf="parent" />
 
             <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvTopRated"
+                android:id="@+id/recSecond"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
+                android:layout_marginHorizontal="5dp"
                 android:layout_marginTop="15dp"
                 app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvTopRated"
+                app:layout_constraintTop_toBottomOf="@id/tvSample"
                 app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
                 android:orientation="horizontal"
-                tools:listitem="@layout/anime_item" />
-
-            <TextView
-                android:id="@+id/tvNowPlaying"
-                app:layout_constraintTop_toBottomOf="@id/rvTopRated"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Now Playing"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvNowPlaying"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvNowPlaying"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                tools:listitem="@layout/anime_item" />
-
-            <TextView
-                android:id="@+id/tvUpcoming"
-                app:layout_constraintTop_toBottomOf="@id/rvNowPlaying"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="15dp"
-                android:fontFamily="sans-serif-light"
-                android:text="Upcoming"
-                android:textColor="@color/black"
-                android:textSize="25sp"
-                app:layout_constraintStart_toStartOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/rvUpcoming"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="10dp"
-                android:layout_marginRight="10dp"
-                android:layout_marginTop="15dp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintTop_toBottomOf="@id/tvUpcoming"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                android:orientation="horizontal"
-                android:paddingBottom="60dp"
-                tools:listitem="@layout/anime_item" />
+                tools:listitem="@layout/popular_movies" />
 
 
         </androidx.constraintlayout.widget.ConstraintLayout>
