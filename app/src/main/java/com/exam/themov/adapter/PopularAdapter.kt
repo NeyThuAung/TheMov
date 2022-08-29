@@ -6,15 +6,14 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.RecyclerView
 import coil.load
 import coil.transform.CircleCropTransformation
-import com.exam.themov.databinding.AnimeItemBinding
-import com.exam.themov.models.Anime.AnimeResult
+import com.exam.themov.databinding.PopularMoviesBinding
 import com.exam.themov.models.Result
 
 class PopularAdapter(
     val popularList: List<Result>
 ): RecyclerView.Adapter<PopularAdapter.PopularHolder>() {
 
-    inner class PopularHolder(private val binding: AnimeItemBinding) :RecyclerView.ViewHolder(binding.root){
+    inner class PopularHolder(private val binding: PopularMoviesBinding) :RecyclerView.ViewHolder(binding.root){
         fun bind(popularList : Result){
             val IMG_BASEURL = "https://image.tmdb.org/t/p/w500/"
             binding.ivMovImg.load(
@@ -24,14 +23,13 @@ class PopularAdapter(
                 crossfade(true)
 
             }
-            binding.tvTitle.text=popularList.title
-
+            binding.tvTitle.text=popularList.title.toString()
         }
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): PopularHolder {
         return PopularHolder(
-            AnimeItemBinding.inflate(LayoutInflater.from(parent.context),parent,false)
+            PopularMoviesBinding.inflate(LayoutInflater.from(parent.context),parent,false)
         )
     }
 
