@@ -1,7 +1,7 @@
-
 package com.exam.themov
 
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Handler
@@ -21,24 +21,23 @@ import com.exam.themov.adapter.SearchAdapter
 import com.exam.themov.api.Request
 import com.exam.themov.api.RetrofitHelper
 import com.exam.themov.databinding.ActivityMainBinding
+import com.exam.themov.databinding.ActivityPopularSeemoreBinding
 import com.exam.themov.models.Anime.AnimeData
-import com.exam.themov.models.Anime.AnimeResult
-import com.exam.themov.models.Result
 import com.exam.themov.repository.PopularRepository
+import com.exam.themov.seemore.popularSeeMoreActivity
 import com.exam.themov.viewmodels.MainViewModel
 import com.exam.themov.viewmodels.ViewModelFactory
-import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.launch
-import okhttp3.internal.http2.Http2Reader
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity() {
     private lateinit var binding: ActivityMainBinding
     lateinit var mainViewModel: MainViewModel
     private lateinit var popularAdapter: PopularAdapter
+
+    //private lateinit var listener : AnimeAdapter.ItemClickInterface
     private lateinit var animeAdapter: AnimeAdapter
     private lateinit var searchAdapter: SearchAdapter
-    private lateinit var request:Request
+    private lateinit var request: Request
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -53,8 +52,7 @@ class MainActivity : AppCompatActivity() {
 
 
         mainViewModel = ViewModelProvider(
-            this,
-            ViewModelFactory(popularRepository)
+            this, ViewModelFactory(popularRepository)
         ).get(MainViewModel::class.java)
 
 //        mainViewModel.popular.observe(this){
@@ -82,6 +80,7 @@ class MainActivity : AppCompatActivity() {
 
             getImageSlide()
 
+
         }
 
         var searchView = findViewById<SearchView>(R.id.searchView)
@@ -94,21 +93,24 @@ class MainActivity : AppCompatActivity() {
             override fun onQueryTextChange(p0: String?): Boolean {
                 mainViewModel.viewModelScope.launch {
                     var searchResult = mainViewModel.getSearchResult(p0.toString())
-                    if (searchResult.body()!= null){
+                    if (searchResult.body() != null) {
                         searchData.postValue(searchResult.body())
                         Log.d("SearchResult", "onQueryTextChange: ${searchResult.body()}")
-                        searchData.observe(this@MainActivity){
+                        searchData.observe(this@MainActivity) {
                             animeAdapter = AnimeAdapter(it.results)
                             binding.recPopular.also {
                                 it.setHasFixedSize(true)
 
                                 it.layoutManager =
-                                    LinearLayoutManager(this@MainActivity, LinearLayoutManager.HORIZONTAL, false)
+                                    LinearLayoutManager(
+                                        this@MainActivity,
+                                        LinearLayoutManager.HORIZONTAL,
+                                        false
+                                    )
                                 it.adapter = animeAdapter
                             }
                         }
-                    }
-                    else{
+                    } else {
                         Toast.makeText(this@MainActivity, "Can't Search", Toast.LENGTH_SHORT).show()
                         Log.d("SearchResult", "onQueryTextChange: ${searchResult.body()}")
                     }
@@ -120,10 +122,10 @@ class MainActivity : AppCompatActivity() {
 
 
         })
+        onClick()
 
 
     }
-
 
 
     private fun getImageSlide() {
@@ -161,5 +163,18 @@ class MainActivity : AppCompatActivity() {
             getImageSlide()
         }
     }
+
+    private fun onClick() {
+        binding.tvSeemore.setOnClickListener {
+            var intent = Intent(this@MainActivity, popularSeeMoreActivity::class.java)
+            startActivity(intent)
+        }
+    }
+
+//    override fun onItemClicked(id: Int) {
+//        val intent = Intent(this,DetailActivity::class.java)
+//        intent.putExtra("movieId",id)
+//        startActivity(intent)
+//    }
 
 }

@@ -25,7 +25,7 @@ class SearchAdapter(
 
             }
             binding.tvTitle.text=SearchList.name.toString()
-            binding.tvLanguage.text=SearchList.original_language.toString()
+
         }
     }
 

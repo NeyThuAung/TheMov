@@ -24,7 +24,6 @@ class PopularAdapter(
 
             }
             binding.tvTitle.text=popularList.title.toString()
-            binding.tvLanguage.text=popularList.original_language.toString()
         }
     }
 
